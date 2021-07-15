@@ -1,7 +1,7 @@
 const axios = require('axios').default;
 
 var client = axios.create({
-  baseURL: 'http://localhost:3001',
+  baseURL: 'http://localhost:5000',
   timeout: 1000
 });
 
@@ -51,7 +51,7 @@ const api = {
     const url = `/Employees/${employeeId}/Dependents/`;
     const request = {dependents: [dependentData]}
     const result = await client.post(url, request);
-    if (result.status !== 201) {
+    if (result.status !== 202) {
       throw new Error('Failed to create dependent.');
     }
     return result.data;

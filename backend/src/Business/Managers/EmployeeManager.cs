@@ -140,6 +140,8 @@ namespace BenefitsApp.Business.Managers
       }
       employee.FirstName = request.FirstName;
       employee.LastName = request.LastName;
+      employee.StartDate = request.StartDate.GetValueOrDefault();
+      employee.Salary = request.Salary.GetValueOrDefault();
       _db.Employees.Update(employee);
       await _db.SaveChangesAsync();
       return employee;

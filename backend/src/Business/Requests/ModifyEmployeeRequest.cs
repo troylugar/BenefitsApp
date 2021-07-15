@@ -21,6 +21,9 @@ namespace BenefitsApp.Business.Requests
     /// The date the employee starts their employement.
     /// </summary>
     [Required]
-    public DateTime StartDate { get; set; }
+    public DateTime? StartDate { get; set; }
+    
+    [Required]
+    public decimal? Salary { get; set; }
   }
 }

@@ -17,12 +17,15 @@ namespace BenefitsApp.Business.Requests
     /// </summary>
     [Required]
     public string LastName { get; set; }
+    
+    [Required]
+    public decimal? Salary { get; set; }
 
     /// <summary>
     /// The employee's start date.
     /// </summary>
     [Required]
-    public DateTime StartDate { get; set; }
+    public DateTime? StartDate { get; set; }
 
     /// <summary>
     /// The employee's dependents.

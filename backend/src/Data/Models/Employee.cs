@@ -13,10 +13,10 @@ namespace BenefitsApp.Data.Models
     public Guid Id { get; set; }
     
     [Required]
-    public decimal Salary { get; set; }
+    public decimal? Salary { get; set; }
     
     [Required]
-    public DateTime StartDate { get; set; }
+    public DateTime? StartDate { get; set; }
 
     [NotMapped]
     public decimal CostOfBenefits { get; set; }

@@ -66,7 +66,10 @@ namespace BenefitsApp.Controllers
       try
       {
         var result = await _employeeManager.ModifyEmployee(employeeId, request);
-        return Ok(result.ToResponse());
+        return AcceptedAtAction(
+          nameof(GetById),
+          new { employeeId },
+          result.ToResponse());
       }
       catch (NotFoundException e)
       {
@@ -91,7 +94,7 @@ namespace BenefitsApp.Controllers
     }
 
     [HttpPost("{employeeId:guid}/Dependents")]
-    [ProducesResponseType(typeof(EmployeeResponse), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(EmployeeResponse), StatusCodes.Status202Accepted)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<EmployeeResponse>> AddDependents(Guid employeeId, CreateDependentsRequest request)
@@ -99,7 +102,7 @@ namespace BenefitsApp.Controllers
       try
       {
         var result = await _employeeManager.CreateDependents(employeeId, request);
-        return Ok(result.ToResponse());
+        return Accepted(result.ToResponse());
       }
       catch (NotFoundException e)
       {
@@ -127,7 +130,8 @@ namespace BenefitsApp.Controllers
     [ProducesResponseType(typeof(DependentResponse), StatusCodes.Status202Accepted)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<DependentResponse>> ModifyDependent(Guid employeeId, Guid dependentId, ModifyDependentsRequest request)
+    public async Task<ActionResult<DependentResponse>> ModifyDependent(Guid employeeId, Guid dependentId,
+      ModifyDependentsRequest request)
     {
       try
       {

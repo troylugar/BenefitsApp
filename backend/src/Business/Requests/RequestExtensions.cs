@@ -13,7 +13,8 @@ namespace BenefitsApp.Business.Requests
       {
         FirstName = request.FirstName,
         LastName = request.LastName,
-        StartDate = request.StartDate
+        StartDate = request.StartDate.GetValueOrDefault(),
+        Salary = request.Salary.GetValueOrDefault()
       };
       if (request.Dependents == null) return result;
       

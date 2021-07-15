@@ -10,19 +10,27 @@ function EditEmployee(props) {
   const [redirect, setRedirect] = useState(false);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [salary, setSalary] = useState(0);
+  const [startDate, setStartDate] = useState(new Date());
 
   useEffect(() => {
     api.getEmployeeById(employeeId).then(data => {
       setEmployee(data);
       setFirstName(data.firstName);
       setLastName(data.lastName);
+      setSalary(data.salary);
+      const isoDate = data.startDate.substring(0,10);
+      setStartDate(isoDate);
     });
   }, [employeeId]);
 
   const onSubmit = (event) => {
+    const d = new Date(startDate);
     api.modifyEmployee(employeeId, {
       firstName,
-      lastName
+      lastName,
+      salary,
+      startDate: d.toISOString()
     });
     setRedirect(true);
     event.preventDefault();
@@ -60,6 +68,20 @@ function EditEmployee(props) {
             <label for="lastName" className="col-2 col-form-label">Last Name</label>
             <div className="col-10">
               <input id="lastName" type="text" className="form-control" onChange={handleChange(setLastName)} value={lastName} />
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-6 row">
+            <label for="salary" className="col-2 col-form-label">Salary</label>
+            <div className="col-10">
+              <input id="salary" type="number" className="form-control" onChange={handleChange(setSalary)} value={salary} />
+            </div>
+          </div>
+          <div className="col-6 row">
+            <label for="start-date" className="col-2 col-form-label">Salary</label>
+            <div className="col-10">
+              <input id="start-date" type="date" className="form-control" onChange={handleChange(setStartDate)} value={startDate} />
             </div>
           </div>
         </div>

@@ -19,7 +19,8 @@ namespace BenefitsApp.Business.Responses
           Id = x.Id,
           FirstName = x.FirstName,
           LastName = x.LastName,
-          StartDate = x.StartDate
+          Salary = x.Salary.GetValueOrDefault(),
+          StartDate = x.StartDate.GetValueOrDefault()
         })
       };
     }
@@ -32,7 +33,8 @@ namespace BenefitsApp.Business.Responses
         FirstName = employee.FirstName,
         LastName = employee.LastName,
         CostOfBenefits = employee.CostOfBenefits,
-        StartDate = employee.StartDate,
+        Salary = employee.Salary.GetValueOrDefault(),
+        StartDate = employee.StartDate.GetValueOrDefault(),
         Dependents = employee.Dependents?.Select(x => new EmployeeResponse.DependentDetails()
         {
           Id = x.Id,
@@ -84,7 +86,8 @@ namespace BenefitsApp.Business.Responses
             Id = x.EmployeeId,
             FirstName = x.Employee?.FirstName,
             LastName = x.Employee?.LastName,
-            StartDate = x.Employee?.StartDate
+            StartDate = x.Employee?.StartDate,
+            Salary = x.Employee?.Salary,
           },
           Benefit = x.Benefit,
           Discounts = x.Discounts?.Select(y => y.Name),
