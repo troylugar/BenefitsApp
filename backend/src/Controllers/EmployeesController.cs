@@ -59,6 +59,7 @@ namespace BenefitsApp.Controllers
 
     [HttpPut("{employeeId:guid}")]
     [ProducesResponseType(typeof(EmployeeResponse), StatusCodes.Status202Accepted)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<EmployeeResponse>> ModifyById(Guid employeeId, ModifyEmployeeRequest request)
     {
@@ -124,6 +125,7 @@ namespace BenefitsApp.Controllers
 
     [HttpPut("{employeeId:guid}/Dependents/{dependentId:guid}")]
     [ProducesResponseType(typeof(DependentResponse), StatusCodes.Status202Accepted)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<DependentResponse>> ModifyDependent(Guid employeeId, Guid dependentId, ModifyDependentsRequest request)
     {
